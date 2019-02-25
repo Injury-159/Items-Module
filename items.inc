@@ -147,8 +147,6 @@ stock CreateItem(type, bool:spawn, Float:x, Float:y, Float:z, worldid = -1, inte
 static ItemWorldSpawn(index)
 {
 	new type = Item[index][itmType];
-	new Float:rx = ItemType[type][itmTypeRX];
-	new Float:ry = ItemType[type][itmTypeRY];
 	new worldid = Item[index][itmWorld];
 	new interiorid = Item[index][itmInterior];
 
@@ -156,7 +154,7 @@ static ItemWorldSpawn(index)
 	data[0] = ITEM_REFERENCE;
 	data[1] = index;
 
-	new objectid = CreateDynamicObject(ItemType[type][itmTypeModel], Item[index][itmX], Item[index][itmY], Item[index][itmZ], rx, ry, float(random(360)), worldid, interiorid, _, ITEM_STREAM_DIST, ITEM_STREAM_DIST);
+	new objectid = CreateDynamicObject(ItemType[type][itmTypeModel], Item[index][itmX], Item[index][itmY], Item[index][itmZ], ItemType[type][itmTypeRX], ItemType[type][itmTypeRY], float(random(360)), worldid, interiorid, _, ITEM_STREAM_DIST, ITEM_STREAM_DIST);
 	new areaid = CreateDynamicSphere(0.0, 0.0, 0.0, 1.1, worldid, interiorid);
 
 	AttachDynamicAreaToObject(areaid, objectid);
